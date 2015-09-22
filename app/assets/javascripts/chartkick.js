@@ -211,12 +211,13 @@
       } else { // str
         // try our best to get the str into iso8601
         // TODO be smarter about this
-		var flt = parseFloat(n)
-		if(isNan(flt)){
+		var value = parseFloat(n)
+		if (!isNaN(value) && value.toString().indexOf('.') != -1) {
+			n = flt
+		}
+		else{
 	        var str = n.replace(/ /, "T").replace(" ", "").replace("UTC", "Z");
 	        n = parseISO8601(str) || new Date(n);
-		} else {
-			n = flt
 		}
       }
     }
