@@ -213,7 +213,7 @@
         // TODO be smarter about this
 		var value = parseFloat(n)
 		if (!isNaN(value) && value.toString().indexOf('.') != -1) {
-			n = flt
+			n = value
 		}
 		else{
 	        var str = n.replace(/ /, "T").replace(" ", "").replace("UTC", "Z");
