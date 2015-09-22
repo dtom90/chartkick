@@ -206,19 +206,17 @@
 
   function toDate(n) {
     if (typeof n !== "object") {
+      var value = parseFloat(n)
+      if (!isNaN(value) && value.toString().indexOf('.') != -1) {
+        n = value
+      }
       if (typeof n === "number") {
         n = new Date(n * 1000); // ms
       } else { // str
         // try our best to get the str into iso8601
         // TODO be smarter about this
-		var value = parseFloat(n)
-		if (!isNaN(value) && value.toString().indexOf('.') != -1) {
-			n = value
-		}
-		else{
-	        var str = n.replace(/ /, "T").replace(" ", "").replace("UTC", "Z");
-	        n = parseISO8601(str) || new Date(n);
-		}
+        var str = n.replace(/ /, "T").replace(" ", "").replace("UTC", "Z");
+        n = parseISO8601(str) || new Date(n);
       }
     }
     return n;
@@ -574,7 +572,7 @@
 
           for (j = 0; j < s.data.length; j++) {
             d = s.data[j];
-            key = (columnType === "datetime" && typeof d[0] === "number") ? d[0].getTime() : d[0];
+            key = (columnType === "datetime" && typeof d[0] !== "number") ? d[0].getTime() : d[0];
             if (!rows[key]) {
               rows[key] = new Array(series.length);
             }
