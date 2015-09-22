@@ -238,6 +238,9 @@
   }
 
   function sortByTime(a, b) {
+	  if(typeof a === "number") {
+		  return a - b
+	  }
     return a[0].getTime() - b[0].getTime();
   }
 
