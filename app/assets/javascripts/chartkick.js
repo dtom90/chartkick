@@ -574,7 +574,7 @@
 
           for (j = 0; j < s.data.length; j++) {
             d = s.data[j];
-            key = (columnType === "datetime") ? d[0].getTime() : d[0];
+            key = (columnType === "datetime" && typeof d[0] === "number") ? d[0].getTime() : d[0];
             if (!rows[key]) {
               rows[key] = new Array(series.length);
             }
