@@ -239,7 +239,7 @@
 
   function sortByTime(a, b) {
 	  if(typeof a[0] === "number") {
-		  return a - b
+		  return a[0] - b[0]
 	  }
     return a[0].getTime() - b[0].getTime();
   }
